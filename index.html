@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chacra Clara · Decisiones para el productor de arroz</title>
+  <meta name="description" content="Calcula tu precio de equilibrio, revisa la estacionalidad del precio del arroz y elige cuándo sembrar.">
+  <meta name="theme-color" content="#1d4a36">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#e6b84a"/><path d="M16 26V11M16 11c-3-1-5-3.5-5-7 3 .5 5 3 5 7zm0 0c3-1 5-3.5 5-7-3 .5-5 3-5 7zm0 7c-3-1-5-3-5-6 3 .5 5 2.5 5 6zm0 0c3-1 5-3 5-6-3 .5-5 2.5-5 6z" fill="none" stroke="#1d4a36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <h1>Chacra Clara</h1>
+        <p id="subtitulo">Arroz · decide con tus números</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="Secciones">
+    <a href="#inicio" data-tab="inicio"><span aria-hidden="true">🏠</span><b>Inicio</b></a>
+    <a href="#costos" data-tab="costos"><span aria-hidden="true">🧾</span><b>Costos</b></a>
+    <a href="#parcelas" data-tab="parcelas"><span aria-hidden="true">🗺️</span><b>Parcelas</b></a>
+    <a href="#precios" data-tab="precios"><span aria-hidden="true">📈</span><b>Precios</b></a>
+    <a href="#siembra" data-tab="siembra"><span aria-hidden="true">🌱</span><b>Siembra</b></a>
+    <a href="#escenarios" data-tab="escenarios"><span aria-hidden="true">⚖️</span><b>Escenarios</b></a>
+    <a href="#datos" data-tab="datos"><span aria-hidden="true">💾</span><b>Datos</b></a>
+  </nav>
+
+  <main id="view" tabindex="-1"></main>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <noscript><p style="padding:1rem">Esta herramienta necesita JavaScript activado.</p></noscript>
+  <script src="calc.js"></script>
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

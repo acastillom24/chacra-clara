@@ -1,0 +1,14 @@
+{
+  "name": "chacra-clara",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Chacra Clara: decisiones para el productor de arroz (PWA + Neon)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "db:migrate": "node db/migrate.js",
+    "db:seed": "node db/seed.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}
