@@ -229,3 +229,10 @@ details > summary { cursor: pointer; font-weight: 700; padding: .3rem 0; min-hei
 .barra i { display: block; height: 100%; background: var(--green-2); }
 .card > .kv { display: flex; justify-content: space-between; gap: .5rem; padding: .25rem 0; font-size: .95rem; }
 .card > .kv.res { font-weight: 800; }
+
+/* Mostrar/ocultar contraseña */
+.pw { position: relative; display: flex; }
+.pw input { width: 100%; padding-right: 3rem; }
+.pw-btn { position: absolute; right: .2rem; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; color: var(--ink-2); border-radius: 8px; cursor: pointer; }
+.pw-btn:hover, .pw-btn[aria-pressed="true"] { color: var(--green); }
+.pw-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }

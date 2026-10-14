@@ -520,6 +520,9 @@
     return h;
   }
 
+  var EYE = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var EYE_OFF = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.9 10.9 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A10.9 10.9 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>';
+
   function viewAuth() {
     var reg = auth.mode === 'register';
     return '<section class="card"><h2>' + (reg ? 'Crear tu cuenta' : 'Ingresar') + '</h2>' +
@@ -527,7 +530,9 @@
       '<form id="f-auth" style="margin-top:.6rem"><div class="grid g2">' +
       (reg ? field('Tu nombre', '<input name="nombre" autocomplete="name" maxlength="80">') + field('Nombre de la finca', '<input name="finca" placeholder="Mi finca" maxlength="80">') + field('Lugar', '<input name="lugar" placeholder="Distrito, provincia" maxlength="120">') : '') +
       field('Correo', '<input type="email" name="email" autocomplete="email" required>') +
-      field('Contraseña' + (reg ? ' (mínimo 8 caracteres)' : ''), '<input type="password" name="password" autocomplete="' + (reg ? 'new-password' : 'current-password') + '" minlength="' + (reg ? 8 : 1) + '" required>') +
+      field('Contraseña' + (reg ? ' (mínimo 8 caracteres)' : ''),
+        '<div class="pw"><input type="password" name="password" autocomplete="' + (reg ? 'new-password' : 'current-password') + '" minlength="' + (reg ? 8 : 1) + '" required>' +
+        '<button type="button" class="pw-btn" data-act="toggle-pw" aria-pressed="false" aria-label="Mostrar contraseña" title="Mostrar contraseña">' + EYE + '</button></div>') +
       '</div><div class="row" style="margin-top:.7rem"><button class="btn" type="submit">' + (reg ? 'Crear cuenta' : 'Ingresar') + '</button>' +
       '<button class="btn sec" type="button" data-act="auth-mode">' + (reg ? 'Ya tengo cuenta' : 'Crear una cuenta') + '</button></div></form></section>';
   }
@@ -685,6 +690,14 @@
       download('precios-arroz.csv', C.toCSV(S.prices), 'text/csv');
     } else if (act === 'export-json') {
       download('chacra-clara-copia-' + todayISO() + '.json', JSON.stringify(S, null, 2), 'application/json');
+    } else if (act === 'toggle-pw') {
+      var inp = b.parentNode.querySelector('input'), show = inp.type === 'password';
+      inp.type = show ? 'text' : 'password';
+      b.innerHTML = show ? EYE_OFF : EYE;
+      b.setAttribute('aria-pressed', show ? 'true' : 'false');
+      b.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      b.title = show ? 'Ocultar contraseña' : 'Mostrar contraseña';
+      inp.focus();
     } else if (act === 'auth-mode') {
       auth.mode = auth.mode === 'register' ? 'login' : 'register'; render();
     } else if (act === 'logout') {
